@@ -1,0 +1,19 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'go-gateway'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['gateway:8080']
+
+  - job_name: 'accounts-service'
+    metrics_path: account/actuator/prometheus
+    static_configs:
+      - targets: ['gateway:8080']
+
+  - job_name: 'loans-service'
+    metrics_path: loans/actuator/prometheus
+    static_configs:
+      - targets: ['gateway:8080']
+
